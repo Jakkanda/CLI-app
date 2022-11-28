@@ -12,8 +12,6 @@ program.parse(process.argv);
 
 const argv = program.opts();
 
-console.log(argv)
-
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
@@ -42,3 +40,50 @@ async function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
+
+// async function invokeAction({ action, id, name, email, phone }) {
+//   switch (action) {
+//     case "list":
+//       const allContacts = await contactsDb.listContacts();
+//       console.table(allContacts)
+//       break;
+
+//     case "get":
+//       await contactsDb.getContactById(id);
+//       break;
+
+//     case "add":
+//       await contactsDb.addContact(name, email, phone);
+//       break;
+    
+//     case "remove":
+//       await contactsDb.removeContact(id);
+//       break;
+    
+//     default:
+//       console.warn("\x1B[31m Unknown action type!");
+//   }
+// }
+
+// program
+//   .command("list").action(async () => {
+//     invokeAction({ action: "list"});
+//   });
+
+//   program.command("get <id>").action(async (options) => {
+//   const id = options;
+//   invokeAction({ action: "get", id });
+// });
+
+// program.command("add <name...>").action(async (options) => {
+//   console.log(options);
+
+//   invokeAction({ action: "add", name: options});
+// });
+
+// program.command("remove <id>").action(async (options) => {
+//   const id = options;
+//   invokeAction({ action: "remove", id });
+// });
+
+// program.parse();
