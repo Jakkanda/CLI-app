@@ -11,23 +11,22 @@ async function listContacts() {
   return dbContacts;
 };
 
-async function getContactById(contactId) {
+async function getContactById(id) {
   const db = await listContacts();
-  const contact = db.find((person) => person.id === contactId);
+  const contact = db.find((person) => person.id === id);
   if (!contact) {
     return null;
   }
   return contact;
 };
 
-async function removeContact(contactId) {
+async function removeContact(id) {
   let db = await listContacts();
-  const contact = db.find((person) => person.id === contactId);
+  const contact = db.find((person) => person.id === id);
   if (!contact) {
     return null;
   }
-  const contacts = db.filter((person) => person.id !== contactId);
-  console.log(contacts);
+  const contacts = db.filter((person) => person.id !== id);
   db = contacts;
   await fs.writeFile(contactsPath, JSON.stringify(db));
 
